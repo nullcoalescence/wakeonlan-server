@@ -1,3 +1,5 @@
+using wakeonlan_server.Db;
+
 namespace wakeonlan_server
 {
     public class Program
@@ -8,6 +10,8 @@ namespace wakeonlan_server
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<WakeOnLanContext>();
 
             var app = builder.Build();
 
