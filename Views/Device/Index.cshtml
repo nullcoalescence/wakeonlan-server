@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Device>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Devices</h2>
+
+<h3>List of devices</h3>
+
+@if (@Model.Count() == 0)
+{
+    @:There are no devices in the database. <a href="/device/add">Add one</a>
+}
+else
+{
+    @foreach(var d in @Model)
+    {
+        @d.Name <br />
+    }
+}
