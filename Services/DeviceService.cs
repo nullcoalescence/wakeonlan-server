@@ -22,5 +22,7 @@ namespace wakeonlan_server.Services
 
             return devices;
         }
+
+        
     }
 }
