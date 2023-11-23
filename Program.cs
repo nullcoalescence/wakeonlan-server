@@ -1,4 +1,5 @@
 using wakeonlan_server.Db;
+using wakeonlan_server.Services;
 
 namespace wakeonlan_server
 {
@@ -12,6 +13,8 @@ namespace wakeonlan_server
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddDbContext<WakeOnLanContext>();
+
+            builder.Services.AddScoped<DeviceService>();
 
             var app = builder.Build();
 
@@ -33,6 +36,10 @@ namespace wakeonlan_server
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapControllerRoute(
+                name: "device",
+                pattern: "{controller=Device}/{action=Index}/{id?}");
 
             app.Run();
         }
