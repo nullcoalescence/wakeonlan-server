@@ -26,6 +26,11 @@ namespace wakeonlan_server.Controllers
             return View(devices);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost()]
         public async Task<IActionResult> Create(Device device)
         {
