@@ -20,6 +20,9 @@ namespace wakeonlan_server.Controllers
             this.context = context;
         }
 
+        /*
+         * INDEX
+         */
         public IActionResult Index()
         {
             var devices = this.deviceService.GetAllDevices();
@@ -27,6 +30,10 @@ namespace wakeonlan_server.Controllers
             return View(devices);
         }
 
+
+        /*
+         * CREATE
+         */
         public IActionResult Create()
         {
             return View();
@@ -47,6 +54,9 @@ namespace wakeonlan_server.Controllers
             return View(device);
         }
 
+        /*
+         * DETAILS
+         */
         [HttpGet()]
         public async Task<IActionResult> Details(int? id)
         {
@@ -65,6 +75,10 @@ namespace wakeonlan_server.Controllers
 
             return View(device);
         }
+
+        /*
+         *  EDIT
+         */
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -117,6 +131,9 @@ namespace wakeonlan_server.Controllers
             return View(device);
         }
         
+        /*
+         *  DELETE
+         */
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -151,6 +168,9 @@ namespace wakeonlan_server.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /*
+         * INTERNAL
+         */
         private bool DeviceExists(int id)
         {
             return this.context.Devices.Any(d => d.Id == id);
