@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 using wakeonlan_server.Db;
 using wakeonlan_server.Models;
@@ -115,7 +116,7 @@ namespace wakeonlan_server.Controllers
 
             return View(device);
         }
-
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,16 +124,29 @@ namespace wakeonlan_server.Controllers
                 return NotFound();
             }
 
-            var device = this.context.Devices
-                .FirstOrDefault(d => d.Id == id);
+            var device = await this.context.Devices
+                .FirstOrDefaultAsync(d => d.Id == id);
 
             if (device == null)
             {
                 return NotFound();
             }
 
-            this.context.Remove(device);
-            await this.context.SaveChangesAsync();
+            return View(device);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var device = this.context.Devices
+                .FirstOrDefault(d => d.Id == id);
+
+            if (device != null)
+            {
+                this.context.Remove(device);
+                await this.context.SaveChangesAsync();
+            }
+
 
             return RedirectToAction(nameof(Index));
         }

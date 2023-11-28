@@ -8,12 +8,11 @@
 
 <div class="device-controls">
     <a class="btn btn-primary" href="/device/create">Add a device</a>
-    <a class="btn btn-danger" href="/device/remove">Remove a device</a>
 </div>
 
 @if (@Model.Count() == 0)
 {
-    @:There are no devices in the database. <a href="/device/add">Add one</a>
+    @:<p>There are no devices in the database. <a href="/device/add">Add one</a></p>
 }
 else
 {
