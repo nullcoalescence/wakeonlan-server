@@ -23,6 +23,14 @@ namespace wakeonlan_server.Services
             return devices;
         }
 
+        public string GetMacAddressForDeviceId(int? deviceId)
+        {
+            var device = this.context.Devices
+                .Where(d => d.Id == deviceId)
+                .FirstOrDefault();
+
+            return device.MacAddress;
+        }
         
     }
 }

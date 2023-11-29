@@ -15,6 +15,7 @@ namespace wakeonlan_server
             builder.Services.AddDbContext<WakeOnLanContext>();
 
             builder.Services.AddScoped<DeviceService>();
+            builder.Services.AddScoped<WakeOnLanService>();
 
             var app = builder.Build();
 
